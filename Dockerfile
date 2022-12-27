@@ -1,4 +1,5 @@
-FROM python:3.9.7-buster@sha256:79a631c93960c5919f27f3403e734ec19b130008370a5f902141bcff2e6d6f4c
+FROM python:3.9.16-buster@sha256:5e28891402c02291f65c6652a8abddedcb5af15933e923c07c2670f836243833
+
 # Update and package installation
 RUN apt-get update && \
 	apt-get clean && \
@@ -6,13 +7,13 @@ RUN apt-get update && \
 	apt-get clean
 
 RUN apt-get update && \
-	apt-get install -y openjdk-11-jdk p11-kit wkhtmltopdf && \
+	apt-get install -y openjdk-11-jdk p11-kit wkhtmltopdf libqt5gui5 && \
 	apt-get install -y  && \
 	apt-get clean && \
 	update-ca-certificates -f
 
 # Get JADX Tool
-ENV JADX_VERSION 1.2.0
+ENV JADX_VERSION 1.4.5
 
 RUN \
     wget "https://github.com/skylot/jadx/releases/download/v$JADX_VERSION/jadx-$JADX_VERSION.zip" && \
